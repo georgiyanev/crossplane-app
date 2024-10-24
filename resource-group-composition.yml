@@ -1,0 +1,17 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: rg-composition
+spec:
+  compositeTypeRef:
+    apiVersion: my-a1-demo-task-app.com/v1alpha1
+    kind: CompositeResourceGroup
+  resources:
+    - name: resourceGroup
+      base:
+        apiVersion: azure.crossplane.io/v1alpha3
+        kind: ResourceGroup
+        spec:
+          location: West Europe
+          providerConfigRef:
+            name: azure-provider

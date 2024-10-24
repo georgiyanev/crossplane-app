@@ -1,0 +1,20 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: network-composition
+spec:
+  compositeTypeRef:
+    apiVersion: my-a1-demo-task-app.com/v1alpha1
+    kind: CompositeNetwork
+  resources:
+    - name: virtualNetwork
+      base:
+        apiVersion: network.azure.crossplane.io/v1alpha3
+        kind: VirtualNetwork
+        spec:
+          resourceGroupName: my-resource-group
+          location: West Europe
+          providerConfigRef:
+            name: azure-provider
+          addressSpace:
+            - 10.0.0.0/16
